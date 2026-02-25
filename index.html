@@ -436,7 +436,7 @@
                 <input type="email" name="email" placeholder="Work Email *" required>
                 <input type="tel" name="phone" placeholder="Phone (optional)">
                 <textarea name="message" placeholder="What's your biggest lead gen challenge? (optional)" rows="2"></textarea>
-                <input type="text" name="honeypot" class="hp" tabindex="-1" autocomplete="off">
+                <div style="position:absolute;left:-9999px;top:-9999px;opacity:0;height:0;width:0;overflow:hidden" aria-hidden="true"><input type="text" name="honeypot" tabindex="-1" autocomplete="new-password" value=""></div>
                 <button type="submit" class="submit-btn" id="submitBtn">Send Me the Playbook</button>
                 <p class="form-note">No spam. Unsubscribe anytime. We respect your privacy.</p>
             </form>
@@ -493,7 +493,7 @@ document.getElementById('leadForm').addEventListener('submit',async function(e){
     const btn=document.getElementById('submitBtn'),form=this;
     btn.disabled=true;btn.textContent='Sending...';
     const fd=new FormData(form);
-    const payload={email_raw:fd.get('email'),name:fd.get('name'),company:fd.get('company'),phone:fd.get('phone'),message:fd.get('message'),honeypot:fd.get('honeypot'),source_page:'github-pages-b2b-guide',form_id:'b2b-lead-playbook',utm_source:'github-pages',utm_medium:'landing-page',utm_campaign:'b2b-guide-2026',consent:true,referrer:document.referrer||window.location.href};
+    const payload={email_raw:fd.get('email'),name:fd.get('name'),company:fd.get('company'),phone:fd.get('phone'),message:fd.get('message'),source_page:'github-pages-b2b-guide',form_id:'b2b-lead-playbook',utm_source:'github-pages',utm_medium:'landing-page',utm_campaign:'b2b-guide-2026',consent:true,referrer:document.referrer||window.location.href};
     try{
         const r=await fetch('https://api.rangelead.com/api/lead-submissions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
         if(r.ok){form.style.display='none';document.getElementById('formSuccess').style.display='block';}
